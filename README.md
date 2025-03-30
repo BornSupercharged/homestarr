@@ -2,8 +2,7 @@
 
 A sleek, futuristic, single-page homepage/dashboard application inspired by Homarr but focused on simplicity and ease of use. It provides a central search bar (integrating with a local Searx instance) and customizable link categories for quick access to your services and bookmarks. The application stores all data persistently in an SQLite database and is designed to be run easily using Docker.
 
-<!-- TODO: Add a screenshot of the running application -->
-<!-- ![Screenshot Placeholder](screenshot.png) -->
+![Screenshot](https://raw.githubusercontent.com/BornSupercharged/homestarr/refs/heads/main/screenshot.png)
 
 ## Features
 
