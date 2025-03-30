@@ -1,0 +1,52 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# Build artifacts
+dist/
+build/
+
+# Data
+server/data/homepage.sqlite* # Ignore the database file itself
+server/data/
+server/.env
+
+# Editor/OS specific
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln.docstates
+Thumbs.db
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+
+# Client Logs
+client/logs
+client/*.log
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+client/pnpm-debug.log*
+client/lerna-debug.log*
+
+# Client npm
+client/node_modules
+client/dist
+client/dist-ssr
+client/*.local
+
+# Client Editor directories and files
+client/.vscode/*
+client/!.vscode/extensions.json
+client/.idea
+client/.DS_Store
+client/*.suo
+client/*.ntvs*
+client/*.njsproj
+client/*.sln
+client/*.sw?

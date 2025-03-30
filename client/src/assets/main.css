@@ -1,0 +1,391 @@
+/* Reset and Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- GALAXY BACKGROUND START --- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative; /* Needed for pseudo-element positioning */
+  overflow-x: hidden; /* Prevent horizontal scroll from pseudo-elements */
+
+  /* Base dark space color */
+  background-color: #000010; /* Very dark blue */
+
+  /* Layered gradients for nebulae/depth */
+  background-image:
+    /* Subtle pink/purple nebula */
+    radial-gradient(ellipse at 70% 30%, rgba(180, 40, 140, 0.25) 0%, transparent 50%),
+    /* Subtle blue/cyan nebula */
+    radial-gradient(ellipse at 30% 70%, rgba(40, 120, 180, 0.2) 0%, transparent 50%),
+    /* General faint haze */
+    linear-gradient(170deg, rgba(10, 10, 35, 0) 40%, rgba(30, 10, 50, 0.3) 70%, rgba(10, 10, 35, 0) 80%);
+
+  background-attachment: fixed; /* Keep background fixed during scroll */
+  background-size: cover; /* Ensure gradients cover */
+
+  /* Default text color - Ensure contrast */
+  color: #e0e0e0;
+}
+
+/* Star Layer 1 (Smaller, denser stars) */
+body::before {
+  content: '';
+  position: fixed; /* Use fixed to cover viewport regardless of scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2; /* Place behind content and main background gradients */
+
+  /* Generate stars using many small radial gradients */
+  /* Note: Generating this many stars is tedious manually. Consider a generator or preprocessor. */
+  /* This is a simplified example */
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(1px 1px at 80% 30%, white, transparent),
+    radial-gradient(1px 1px at 50% 50%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(1px 1px at 90% 70%, white, transparent),
+    radial-gradient(1px 1px at 25% 55%, white, transparent),
+    radial-gradient(1px 1px at 65% 15%, white, transparent),
+    radial-gradient(1px 1px at 45% 90%, white, transparent),
+    radial-gradient(1px 1px at 75% 60%, white, transparent),
+    radial-gradient(1px 1px at 15% 40%, white, transparent); /* Add many more for density */
+
+  background-size: 3000px 3000px; /* Large size to make stars appear sparse */
+  background-position: 0 0;
+  animation: moveStarsSmall 200s linear infinite; /* Slow movement */
+}
+
+/* Star Layer 2 (Slightly larger, sparser stars) */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place behind content but above star layer 1 */
+
+  background-image:
+    radial-gradient(2px 2px at 20% 80%, white, transparent),
+    radial-gradient(2px 2px at 70% 10%, white, transparent),
+    radial-gradient(2px 2px at 40% 40%, white, transparent),
+    radial-gradient(3px 3px at 85% 55%, rgba(255, 255, 255, 0.8), transparent), /* Slightly brighter/bigger */
+    radial-gradient(2px 2px at 55% 75%, white, transparent),
+    radial-gradient(2px 2px at 5% 5%, white, transparent); /* Add more as needed */
+
+  background-size: 2000px 2000px; /* Different size for parallax */
+  background-position: 0 0;
+  animation: moveStarsLarge 150s linear infinite; /* Slightly faster movement for parallax */
+}
+
+/* Keyframes for star movement */
+@keyframes moveStarsSmall {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; } /* Adjust distance for desired speed */
+}
+
+@keyframes moveStarsLarge {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 6000px; } /* Different movement path/speed */
+}
+/* --- GALAXY BACKGROUND END --- */
+
+a {
+  color: #8bb7f0;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #b3d1f5;
+}
+
+/* Main App Layout */
+#app {
+  /* Ensure app content is above the pseudo-element stars */
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px; /* Added padding back to #app instead of body */}
+
+/* Search Bar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px; /* Space below search */
+}
+
+.search-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 12px 20px;
+  font-size: 1.2em;
+  border: 1px solid #4f4f8c; /* Darker purple border */
+  border-radius: 25px; /* Rounded corners */
+  background-color: #2a2a4e; /* Slightly lighter input background */
+  color: #e0e0e0;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-box:focus {
+  border-color: #61dafb;
+  box-shadow: 0 0 0 3px rgba(97, 218, 251, 0.3); /* Subtle glow on focus */
+}
+
+/* Categories Container */
+.categories-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  gap: 20px; /* Spacing between cards */
+  align-items: flex-start; /* Align cards to the top */
+}
+
+/* Generic Card Style (for categories and the '+' card) */
+.card {
+  background-color: rgba(42, 42, 78, 0.8); /* Slightly transparent dark blue/purple */
+  border-radius: 8px;
+  border: 1px solid rgba(79, 79, 140, 0.7); /* Subtler border */
+  padding: 15px;
+  min-width: 200px;
+  flex: 1 1 200px;
+  max-width: 300px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Slightly stronger shadow */
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: grab;
+  backdrop-filter: blur(3px); /* Optional: Frosted glass effect (can impact performance) */
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.card:active {
+    cursor: grabbing;
+}
+
+.card h3 {
+  color: #c5cae9; /* Lighter title color */
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(79, 79, 140, 0.5);
+  padding-bottom: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+/* Add Category Card Specifics */
+.add-category-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+  color: #61dafb;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  min-height: 100px; /* Give it some height */
+}
+
+.add-category-card:hover {
+  background-color: #3a3a5e; /* Slightly darker on hover */
+}
+
+/* Category Card Links */
+.category-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-links li {
+  margin-bottom: 8px;
+}
+
+.category-links a {
+  display: block;
+  padding: 5px 0 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  word-break: break-all; /* Prevent long URLs from breaking layout */
+}
+
+.category-links a:hover {
+  background-color: #3a3a5e; /* Subtle hover background */
+  color: #fff;
+}
+
+/* Add Link Button */
+.add-link-button {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 8px 10px;
+  background-color: #4f4f8c;
+  color: #e0e0e0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.add-link-button:hover {
+  background-color: #61dafb;
+  color: #1a1a2e;
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: rgba(30, 30, 55, 0.95); /* Darker, slightly transparent */
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid rgba(79, 79, 140, 0.8);
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7);
+  width: 90%;
+  max-width: 450px;
+  color: #e0e0e0;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.modal-content h2 {
+  color: #9fa8da;
+  margin-top: 0;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #ccc;
+}
+
+.modal-form input[type="text"],
+.modal-form input[type="url"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #4f4f8c;
+  border-radius: 4px;
+  background-color: #1a1a2e;
+  color: #e0e0e0;
+  font-size: 1em;
+}
+
+.modal-form input[type="text"]:focus,
+.modal-form input[type="url"]:focus {
+    outline: none;
+    border-color: #61dafb;
+    box-shadow: 0 0 0 2px rgba(97, 218, 251, 0.2);
+}
+
+.modal-form .checkbox-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+.modal-form input[type="checkbox"] {
+  margin-right: 10px;
+  accent-color: #61dafb; /* Style checkbox */
+  width: 16px;
+  height: 16px;
+}
+
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modal-button-primary {
+  background-color: #61dafb;
+  color: #1a1a2e;
+}
+
+.modal-button-primary:hover {
+  background-color: #8aef B8;
+}
+
+.modal-button-secondary {
+  background-color: #4f4f8c;
+  color: #e0e0e0;
+}
+
+.modal-button-secondary:hover {
+  background-color: #6a6a9c;
+}
+
+/* Draggable specific styles */
+.sortable-ghost {
+  opacity: 0.4;
+  background: #3a3a5e;
+}
+
+.sortable-drag {
+  /* Styles for the element being dragged (optional) */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .categories-container {
+    justify-content: center; /* Center cards on smaller screens */
+  }
+  .card {
+     flex-basis: calc(50% - 10px); /* Two cards per row approx */
+     max-width: none; /* Allow more flexible sizing */
+  }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+   .card {
+     flex-basis: 100%; /* One card per row */
+  }
+   .search-box {
+       font-size: 1em;
+       padding: 10px 15px;
+   }
+   .modal-content {
+       padding: 20px;
+   }
+}

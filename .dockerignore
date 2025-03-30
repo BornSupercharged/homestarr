@@ -1,0 +1,15 @@
+# .dockerignore
+**/node_modules
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+README.md
+server/.env
+server/data/*
+!server/data/.gitkeep # Example if you want to keep the dir but not content
+client/dist
+npm-debug.log*
+yarn-error.log*
+.vscode
+.idea

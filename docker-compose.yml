@@ -1,0 +1,12 @@
+services:
+  homestarr:
+    build: .
+    container_name: homestarr
+    ports:
+        - ${HOMESTARR_PORT}:${HOMESTARR_PORT}
+    volumes:
+        - ./server/data:/app/server/data
+    restart: unless-stopped
+    environment:
+        - NODE_ENV=production
+        - SEARX_URL=$SEARX_URL
