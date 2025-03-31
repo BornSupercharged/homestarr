@@ -1,0 +1,31 @@
+{
+  "name": "Homestarr Personal Dashboard",
+  "short_name": "Homestarr",
+  "description": "Your personalized, sleek, and simple homepage dashboard for organizing links and searching.",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png", // Path relative to the public folder root
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any" // Can be used for any purpose
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/maskable-icon-512x512.png", // A specific icon designed for masking
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable" // Allows the OS to shape the icon (e.g., rounded corners)
+    }
+  ],
+  "start_url": "/", // The URL loaded when the app starts from the home screen
+  "display": "standalone", // Opens like a native app, hiding browser UI
+  "background_color": "#1a1a2e", // Placeholder color before CSS loads (match your theme)
+  "theme_color": "#1a1a2e", // Suggests UI color for the browser (match your theme)
+  "scope": "/", // Defines the navigation scope of the PWA
+  "orientation": "any" // Allows any screen orientation
+}
