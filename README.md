@@ -1,8 +1,11 @@
-# Simple Homepage Dashboard
+# Homestarr Personal Dashboard
 
-A sleek, futuristic, single-page homepage/dashboard application inspired by Homarr but focused on simplicity and ease of use. It provides a central search bar (integrating with a local Searx instance) and customizable link categories for quick access to your services and bookmarks. The application stores all data persistently in an SQLite database and is designed to be run easily using Docker.
+A sleek single-page homepage/dashboard application inspired by Homarr but focused on simplicity and ease of use. It provides a central search bar (integrating with a local Searx instance) and customizable link categories for quick access to your services and bookmarks. The application stores all data persistently in an SQLite database and is designed to be run easily using Docker.
 
-![Screenshot](https://raw.githubusercontent.com/BornSupercharged/homestarr/refs/heads/main/screenshot.png)
+![Screenshot](https://raw.githubusercontent.com/BornSupercharged/homestarr/refs/heads/main/assets/screenshot.png)
+
+Installed as a browser app:
+![Screenshot](https://raw.githubusercontent.com/BornSupercharged/homestarr/refs/heads/main/assets/installed_app_screenshot.png)
 
 ## Features
 
@@ -148,4 +151,4 @@ This method is ideal for development as it provides automatic reloading when cod
 Contributions are welcome! Please feel free to submit a Pull Request or open an Issue.
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details (if applicable).
+This project is licensed under the MIT License - see the LICENSE file for details.
